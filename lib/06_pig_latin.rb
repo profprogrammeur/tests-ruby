@@ -5,14 +5,14 @@ words = words.split.map!{|w|
     then 
     w+"ay"
   elsif
-    w[0].count('aeiouy')==0 && w[1].count('aeiouy')!=0 #begin with voy and cons
+    w[0].count('aeiouy')==0 && w[1].count('aeiouy')!=0  && w[0,2]!="qu" #begin with cons and voy
     "#{w[1,w.length]}#{w[0]}ay"
   elsif
-     w[0,1].count('aeiouy')==0 #2cons
+     ((w[0,2].count('aeiouy')==0 && w[2].count('aeiouy')!=0)||w[0,2]=="qu")&& (w[0].count('aeiouy')==0 && w[1,2]!="qu")#2cons and 1voy 
     "#{w[2,w.length]}#{w[0,2]}ay"
   elsif
-    w[0,2].count('aeiouy')==0 #3 cons
-    "#{w[w.length-2,w.length]}#{w[0,3]}ay"
+    w[0,3].count('aeiouy')==0 || ((w[0].count('aeiouy')==0 && w[1,2]=="qu")) #3 cons
+    "#{w[3,w.length]}#{w[0,3]}ay"
   
   end}.join(" ")
 
